@@ -1,0 +1,26 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: example-service
+    version: '@project.version@'
+  profiles:
+    active: '@profiles.active@'
+    include: web,nacos,amq
+  cloud:
+    nacos:
+      discovery:
+        metadata:
+          context-path: ${server.servlet.context-path}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  # 数据库连接信息
+  datasource:
+    url: jdbc:postgresql://data.luopc.com:5432/main_uat?currentSchema=public
+    username: uat
+    password: Robin2021

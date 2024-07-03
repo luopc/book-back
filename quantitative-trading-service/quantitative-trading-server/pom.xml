@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.luopc.platform.trade</groupId>
+        <artifactId>quantitative-trading-service</artifactId>
+        <version>2.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>quantitative-trading-server</artifactId>
+
+    <dependencies>
+        <!-- spring boot web核心包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!--排除spring-boot-starter-tomcat依赖 3选1-->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.luopc.platform.common</groupId>
+            <artifactId>common-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.luopc.platform.common</groupId>
+            <artifactId>common-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.luopc.platform.common</groupId>
+            <artifactId>common-amq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.luopc.platform.common</groupId>
+            <artifactId>common-data</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.luopc.platform.common</groupId>
+            <artifactId>trade-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.luopc.platform.common</groupId>
+            <artifactId>trade-mock</artifactId>
+        </dependency>
+
+        <!--本地缓存框架-->
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.luopc.platform.trade</groupId>
+            <artifactId>quantitative-trading-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl</groupId>
+            <artifactId>api</artifactId>
+            <version>0.28.0</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.siegmar</groupId>-->
+<!--            <artifactId>fastcsv</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <!--spring boot打包的话需要指定一个唯一的入门-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <!-- 如果没有该配置，devtools不会生效 -->
+                    <fork>true</fork>
+                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    <mainClass>com.luopc.platform.web.TradingApplication</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>                            <!--可以把依赖的包都打包到生成的Jar包中-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

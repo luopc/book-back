@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.luopc.platform.trade</groupId>
+    <artifactId>quantitative-trading-service</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>com.luopc.platform.parent</groupId>
+        <artifactId>platform-parent</artifactId>
+        <version>1.0.3</version>
+    </parent>
+    <name>bank-services</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>quantitative-trading-api</module>
+        <module>quantitative-trading-server</module>
+    </modules>
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <platform.common.version>1.0.1</platform.common.version>
+        <trade.common.version>2.0.0</trade.common.version>
+    </properties>
+
+    <!-- 依赖声明 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring-cloud 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring-cloud-alibaba 依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.luopc.platform.common</groupId>
+                <artifactId>common-web</artifactId>
+                <version>${platform.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luopc.platform.common</groupId>
+                <artifactId>common-amq</artifactId>
+                <version>${platform.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luopc.platform.common</groupId>
+                <artifactId>common-data</artifactId>
+                <version>${platform.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luopc.platform.common</groupId>
+                <artifactId>common-test</artifactId>
+                <version>${platform.common.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.luopc.platform.common</groupId>
+                <artifactId>trade-api</artifactId>
+                <version>${trade.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luopc.platform.common</groupId>
+                <artifactId>trade-mock</artifactId>
+                <version>${trade.common.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <scm>
+        <url>https://gitee.com/luo_pc/trade-exchange-platfrom/</url>
+        <connection>scm:git:https://gitee.com/luo_pc/trade-exchange-platfrom</connection>
+        <developerConnection>scm:git:https://gitee.com/luo_pc/trade-exchange-platfrom</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+</project>
